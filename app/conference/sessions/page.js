@@ -7,11 +7,14 @@ async function fetchSessions() {
     { cache: "no-store" }
   );
 
+
   const data = await response.json();
   return data;
 }
 
+
 export default async function Page() {
+
   const data = await fetchSessions();
   return (
     <div className={styles.parentContainer}>
@@ -19,7 +22,6 @@ export default async function Page() {
         Last Rendered: {new Date().toLocaleTimeString()}
       </div>
       <h1>Welcome to Globomantics Sessions</h1>
-
       {data.sessions.map(
         ({ id, title, description, room, day, track, speakers }) => (
           <div key={id} className={styles.infoContainer}>
@@ -36,5 +38,5 @@ export default async function Page() {
         )
       )}
     </div>
-  );
+  )
 }

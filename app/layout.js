@@ -1,44 +1,34 @@
 import { Open_Sans } from "@next/font/google";
 import Link from "next/link";
+import styles from "./rootStyle.module.css"
+import "./global.css"
 
-// These styles apply to every route in the application
-import "./global.css";
-import styles from "./rootStyle.module.css";
-
-const inter = Open_Sans({
-  subsets: ["latin"],
+const openSans = Open_Sans({
+  subset: ["latin"],
   weight: ["400"],
-});
+})
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={openSans.className}>
       <head />
       <body>
         <header>
           <h1>
-            <Link className={styles.homeLink} href={"/home"}>
-              GLOBOMANTICS
-            </Link>
+            <Link className={styles.homeLink} href="/home">Globomantics</Link>
           </h1>
           <h3>
-            <Link className={styles.menuBarLinks} href="/blog">
-              Blog
-            </Link>
+            <Link className={styles.menuBarLink} href="/blog">Blog</Link>
           </h3>
           <h3>
-            <Link className={styles.menuBarLinks} href="/settings">
-              Settings
-            </Link>
+            <Link className={styles.menuBarLink} href="/settings">Settings</Link>
           </h3>
           <h3>
-            <Link className={styles.menuBarLinks} href="/conference">
-              Conference
-            </Link>
+            <Link className={styles.menuBarLink} href="/conference">Conference</Link>
           </h3>
         </header>
         {children}
       </body>
-    </html>
-  );
+    </html >
+  )
 }

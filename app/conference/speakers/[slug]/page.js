@@ -2,18 +2,24 @@ import { speakerJson } from "../page";
 import styles from "../../conference.module.css";
 
 function fetchSpeakerInfo(params) {
-  // API call, DB Query, fetch from the app
+  // API call, CB Query, fetch from the app
 
-  const speakerInfo = speakerJson.speakers?.find(
-    (speaker) => speaker.name == params.slug
-  );
+  if (speakerJson.speakers) {
+    const speakerInfo = speakerJson.speakers.find(
+      (speaker) => speaker.name === params.slug
+    );
 
-  return speakerInfo;
+    return speakerInfo;
+  }
+  return null;
 }
 
 export default async function Page({ params }) {
   const speakerInfo = fetchSpeakerInfo(params);
 
+  if (!speakerInfo) {
+    return <div>Loading</div>
+  }
   const { name, bio, sessions } = speakerInfo;
 
   return (
